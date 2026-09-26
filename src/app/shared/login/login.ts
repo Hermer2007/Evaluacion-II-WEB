@@ -11,25 +11,38 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.css',
 })
 export class Login {
-  email:string='';
+
+  username:string='';
   password:string='';
 
   private authService = inject(AuthenticationService);
   private route = inject(Router);
 
   iniciarSecion(){
-    this.authService.login(this.email, this.password).subscribe(success =>{
-      if(success){
-        alert('Bienvenido al sistema')
-        this.route.navigate(['/home']);
-      }else{
-        alert('Email o Password incorrectos')
-      }
-    })
+
+    this.authService
+      .login(this.username, this.password)
+      .subscribe(success =>{
+
+        if(success){
+
+          alert('Bienvenido al sistema');
+
+          this.route.navigate(['/staff']);
+
+        }else{
+
+          alert('Username o Password incorrectos');
+
+        }
+
+      })
   }
 
-    cerrarSecion(){
+  cerrarSecion(){
+
     this.authService.logout();
+
     this.route.navigate(['/login']);
   }
 }

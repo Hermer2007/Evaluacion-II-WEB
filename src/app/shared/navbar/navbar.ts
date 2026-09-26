@@ -10,12 +10,16 @@ import { AuthenticationService } from '../../service/authentication-service';
 })
 export class Navbar {
 
-  private authService = inject(AuthenticationService);
+  public authService = inject(AuthenticationService);
+
   private router = inject(Router);
 
   cerrarSecion(){
+
     this.authService.logout();
-    alert('secion cerrada correctamente')
+
+    alert('Sesion cerrada correctamente');
+
     this.router.navigate(['/login']);
   }
 
